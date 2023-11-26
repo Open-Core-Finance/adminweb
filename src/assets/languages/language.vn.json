@@ -1,0 +1,65 @@
+{
+    "applicationName": "Admin Web",
+    "languageKey": "vn",
+    "login": {
+        "username": "Tên đăng nhập",
+        "password": "Mật khẩu",
+        "loginTitle": "Đăng nhập",
+        "loginButton": "Đăng nhập",
+        "error": {
+            "user_locked": "User đã bị khóa. Xin liên hệ admin để mở khóa.",
+            "login_fail": "Tên đăng nhập và mật khẩu không khớp."
+        }
+    },
+    "user": {
+        "welcome": "Xin chào ${0}!"
+    },
+    "menu": {
+        "groupSystem": "Hệ thống",
+        "groupOther": "Khác",
+        "organizations": "Tổ chức",
+        "roles": "Roles",
+        "settings": "Settings",
+        "users": "Người dùng"
+    },
+    "organization": {
+        "id": "Mã số",
+        "name": "Tên tổ chức",
+        "addTitle": "Thêm tổ chức",
+        "error": {
+            "name_empty": "Không được bỏ trống tên tổ chức!"
+        },
+        "deleteConfirmContent": "Bạn có chắc muốn xóa tổ chức ${0} không?",
+        "deleteConfirmTitle": "Xác nhận xóa tổ chức",
+        "streetAddressLine1": "Số nhà - đường",
+        "city": "Thành phố",
+        "state": "Bang",
+        "zipPostalCode": "Zip postal code",
+        "country": "Quốc gia",
+        "phoneNumber": "Số ĐT",
+        "email": "Email",
+        "currency": "Currency",
+        "timezone": "Timezone",
+        "localDateFormat": "Định dạng ngày",
+        "localDateTimeFormat": "Định dạng ngày giờ",
+        "decimalMark": "Ký hiệu tiền tệ",
+        "logoUrl": "Logo URL",
+        "iconUrl": "Icon URL",
+        "address": "Địa chỉ",
+        "contact": "Liên hệ",
+        "basicInfo": "Thông tin cơ bản",
+        "dateTime": "Ngày giờ"
+    },
+    "action": {
+        "add": "Thêm",
+        "edit": "Sửa",
+        "delete": "Xoá",
+        "action": "Thao tác",
+        "save": "Lưu",
+        "cancel": "Hủy",
+        "yes": "Đồng ý",
+        "no": "Không"
+    },
+    "numberInList": "No.",
+    "tableNoData": "Không có dữ liệu để hiển thị! Xin hãy tạo thêm dữ liệu!"
+}

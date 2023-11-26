@@ -1,0 +1,96 @@
+<div class="add-item-page">
+    <mat-card>
+        <mat-card-title>
+            {{languageService.formatLanguage('organization.addTitle', [])}}
+        </mat-card-title>
+        <mat-card-content>
+            <form [formGroup]="addOrganizationForm">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>{{languageService.formatLanguage('organization.basicInfo', [])}}</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <mat-form-field class="full-width" appearance="fill" color="primary">
+                            <input type="text" matInput placeholder="{{languageService.formatLanguage('organization.name', [])}}" formControlName="name" required>
+                        </mat-form-field>
+                        <mat-form-field class="full-width" appearance="fill" color="primary">
+                            <input type="text" matInput placeholder="{{languageService.formatLanguage('organization.currency', [])}}" formControlName="currency" required>
+                        </mat-form-field>
+                        <mat-form-field class="full-width" appearance="fill" color="primary">
+                            <input type="text" matInput placeholder="{{languageService.formatLanguage('organization.decimalMark', [])}}" formControlName="decimalMark" required>
+                        </mat-form-field>
+                    </mat-card-content>
+                </mat-card>
+
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>{{languageService.formatLanguage('organization.address', [])}}</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <mat-form-field>
+                            <input type="text" matInput placeholder="{{languageService.formatLanguage('organization.streetAddressLine1', [])}}" formControlName="streetAddressLine1">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input type="text" matInput placeholder="{{languageService.formatLanguage('organization.city', [])}}" formControlName="city">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input type="text" matInput placeholder="{{languageService.formatLanguage('organization.state', [])}}" formControlName="state">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input type="text" matInput placeholder="{{languageService.formatLanguage('organization.country', [])}}" formControlName="country">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input type="text" matInput placeholder="{{languageService.formatLanguage('organization.zipPostalCode', [])}}" formControlName="zipPostalCode">
+                        </mat-form-field>
+                    </mat-card-content>
+                </mat-card>
+
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>{{languageService.formatLanguage('organization.contact', [])}}</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <mat-form-field>
+                            <input type="text" matInput placeholder="{{languageService.formatLanguage('organization.phoneNumber', [])}}" formControlName="phoneNumber">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input type="text" matInput placeholder="{{languageService.formatLanguage('organization.email', [])}}" formControlName="email">
+                        </mat-form-field>
+                    </mat-card-content>
+                </mat-card>
+
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>{{languageService.formatLanguage('organization.dateTime', [])}}</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <mat-form-field>
+                            <input type="text" matInput placeholder="{{languageService.formatLanguage('organization.timezone', [])}}" formControlName="timezone" required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input type="text" matInput placeholder="{{languageService.formatLanguage('organization.localDateFormat', [])}}" formControlName="localDateFormat" required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input type="text" matInput placeholder="{{languageService.formatLanguage('organization.localDateTimeFormat', [])}}" formControlName="localDateTimeFormat" required>
+                        </mat-form-field>
+                    </mat-card-content>
+                </mat-card>
+
+                <div class="error" *ngIf="message['error'] && message['error'].length > 0">
+                    {{languageService.formatLanguage("organization.error." + message['error'], [])}}
+                </div>
+            </form>
+        </mat-card-content>
+
+        <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="saveClick($event);">
+                {{languageService.formatLanguage('action.save', [])}}
+            </button>
+            <button mat-raised-button color="warn" (click)="cancelClick($event);">
+                {{languageService.formatLanguage('action.cancel', [])}}
+            </button>
+        </mat-card-actions>
+
+    </mat-card>
+
+</div>
