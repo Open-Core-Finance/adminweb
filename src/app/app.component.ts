@@ -39,21 +39,20 @@ export class AppComponent implements OnDestroy {
     const languageService = this.languageService;
     // System menu group
     const schoolMenuItem = new MenuItem(environment.frontEndUrl.organizations, new LanguageKeyLabelProvider(languageService, "menu.organizations", []), "assets/images/organization-icon.svg", "");
-    const roleMenuItem = new MenuItem(environment.frontEndUrl.roles, new LanguageKeyLabelProvider(languageService, "menu.roles", []), "", "security");
-    roleMenuItem.activated = false;
-    const systemGroup = new MenuGroup("01", new LanguageKeyLabelProvider(languageService, "menu.groupSystem", []), [schoolMenuItem, roleMenuItem]);
+    const curenciesMenuItem = new MenuItem(environment.frontEndUrl.curencies, new LanguageKeyLabelProvider(languageService, "menu.curencies", []), "", "security");
+    const systemGroup = new MenuGroup("01", new LanguageKeyLabelProvider(languageService, "menu.groupSystem", []), [schoolMenuItem, curenciesMenuItem]);
     // Organization menu group
-    const userMenuItem = new MenuItem(environment.frontEndUrl.users, new LanguageKeyLabelProvider(languageService, "menu.users", []), "assets/images/user-icon.svg", "");
-    userMenuItem.activated = false;
-    const subjectMenuItem = new MenuItem(environment.frontEndUrl.subjects, new LanguageKeyLabelProvider(languageService, "menu.subjects", []), "", "medical_information");
-    const periodMenuItem = new MenuItem(environment.frontEndUrl.periods, new LanguageKeyLabelProvider(languageService, "menu.periods", []), "", "view_timeline");
-    const courseMenuItem = new MenuItem(environment.frontEndUrl.courses, new LanguageKeyLabelProvider(languageService, "menu.courses", []), "", "menu_book");
-    const feedMenuItem = new MenuItem(environment.frontEndUrl.feeds, new LanguageKeyLabelProvider(languageService, "menu.feeds", []), "", "feed");
-    feedMenuItem.activated = false;
-    const classMenuItem = new MenuItem(environment.frontEndUrl.classes, new LanguageKeyLabelProvider(languageService, "menu.classes", []), "", "other_houses");
-    const registrationMenuItem = new MenuItem(environment.frontEndUrl.registrations, new LanguageKeyLabelProvider(languageService, "menu.registrations", []), "", "calendar_month");
-    const schoolMenuGroup = new MenuGroup("01", new OrganizationNameLabelProvider(this.organizationService),
-        [classMenuItem, subjectMenuItem, periodMenuItem, courseMenuItem, registrationMenuItem, userMenuItem, feedMenuItem]);
+    // const userMenuItem = new MenuItem(environment.frontEndUrl.users, new LanguageKeyLabelProvider(languageService, "menu.users", []), "assets/images/user-icon.svg", "");
+    // userMenuItem.activated = false;
+    // const subjectMenuItem = new MenuItem(environment.frontEndUrl.subjects, new LanguageKeyLabelProvider(languageService, "menu.subjects", []), "", "medical_information");
+    // const periodMenuItem = new MenuItem(environment.frontEndUrl.periods, new LanguageKeyLabelProvider(languageService, "menu.periods", []), "", "view_timeline");
+    // const courseMenuItem = new MenuItem(environment.frontEndUrl.courses, new LanguageKeyLabelProvider(languageService, "menu.courses", []), "", "menu_book");
+    // const feedMenuItem = new MenuItem(environment.frontEndUrl.feeds, new LanguageKeyLabelProvider(languageService, "menu.feeds", []), "", "feed");
+    // feedMenuItem.activated = false;
+    // const classMenuItem = new MenuItem(environment.frontEndUrl.classes, new LanguageKeyLabelProvider(languageService, "menu.classes", []), "", "other_houses");
+    // const registrationMenuItem = new MenuItem(environment.frontEndUrl.registrations, new LanguageKeyLabelProvider(languageService, "menu.registrations", []), "", "calendar_month");
+    // const schoolMenuGroup = new MenuGroup("01", new OrganizationNameLabelProvider(this.organizationService),
+    //     [classMenuItem, subjectMenuItem, periodMenuItem, courseMenuItem, registrationMenuItem, userMenuItem, feedMenuItem]);
     // Other menu group
     const settingMenuItem = new MenuItem(environment.frontEndUrl.settings, new LanguageKeyLabelProvider(languageService, "menu.settings", []), "", "settings");
     const otherGroup = new MenuGroup("03", new LanguageKeyLabelProvider(languageService, "menu.groupOther", []), [settingMenuItem]);
@@ -75,7 +74,7 @@ export class AppComponent implements OnDestroy {
       }
     });
     // Main Group
-    this.menuGroups = [ systemGroup, schoolMenuGroup, otherGroup, languageMenu ];
+    this.menuGroups = [ systemGroup, otherGroup, languageMenu ];
   }
 
   toggleMenuClicked() {

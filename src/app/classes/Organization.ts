@@ -1,10 +1,11 @@
+import { GeneralModel, ListableItem } from "./CommonClasses";
+import { Currency } from "./Currency";
 import { DayOfWeek } from "./DayOfWeek";
-import { ListableItem } from "./ListableItem";
 
-export class Organization implements ListableItem {
+export class Organization implements ListableItem, GeneralModel {
     id: string = "";
     name: string = "";
-    _index: number = 0;
+    index: number = 0;
     streetAddressLine1: string = "";
     city: string = "";
     state: string = "";
@@ -12,21 +13,17 @@ export class Organization implements ListableItem {
     country: string = "";
     phoneNumber: string = "";
     email: string = "";
-    currency: string = "";
+    currency: Currency = new Currency();
     timezone: string = "";
-    localDateFormat: string = "";
-    localDateTimeFormat: string = "";
-    decimalMark: string = "";
+    localDateFormat: string = "yyyy-MM-dd";
+    localDateTimeFormat: string = "yyyy-MM-dd hh:mm:ss";
+    decimalMark: string = ".";
     logoUrl: string = "";
     iconUrl: string = "";
 
     nonWorkingDays: DayOfWeek[] = [];
 
-    set index(index: number) {
-        this._index = index;
-    }
-
-    get index() {
-        return this._index;
+    constructor() {
+        this.index = 0;
     }
 }

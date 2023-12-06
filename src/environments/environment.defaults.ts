@@ -2,7 +2,8 @@ export const environment = {
     production: true,
     apiUrlRoot: '',
     apiUrl: {
-        userprofile: '', organization: '', role: '', common: '', authentication: '', product: ''
+        userprofile: '', organization: '', role: '', common: '', authentication: '', product: '',
+        currency: ''
     },
     apiPrefix: {
         userLogin: '/login',
@@ -11,15 +12,8 @@ export const environment = {
     frontEndUrl: {
         login: "login",
         organizations: "organizations",
-        roles: "roles",
-        users: "users",
-        courses: "courses",
-        feeds: "feeds",
-        classes: "classes",
-        registrations: "registrations",
-        settings: "settings",
-        subjects: "subjects",
-        periods: "periods"
+        curencies: "curencies",
+        settings: "settings"
     },
     appVersion: "1.0.0-SNAPSHOT",
     appClientId: "corefinance-ADMIN-WEB",

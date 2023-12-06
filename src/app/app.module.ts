@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import {AsyncPipe} from '@angular/common';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -35,6 +36,8 @@ import { OrganizationComponent } from './system/organization/organization.compon
 import { RoleComponent } from './system/role/role.component';
 import { AddOrganizationComponent } from './system/add-organization/add-organization.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { CurrenyComponent } from './system/curreny/curreny.component';
+import { AddCurrenyComponent } from './system/add-curreny/add-curreny.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,8 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
     OrganizationComponent,
     AddOrganizationComponent,
     ConfirmDialogComponent,
-    RoleComponent
+    CurrenyComponent,
+    RoleComponent, AddCurrenyComponent
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule,
@@ -55,7 +59,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
     MatButtonModule, MatInputModule, MatMenuModule, MatIconModule, MatCardModule, MatSelectModule,
     MatExpansionModule, MatPaginatorModule, MatTableModule, MatSortModule, MatProgressSpinnerModule,
     MatDialogModule, MatAutocompleteModule, MatDatepickerModule, MatNativeDateModule, MatDividerModule,
-    MatListModule, MatToolbarModule, MatSidenavModule
+    MatListModule, MatToolbarModule, MatSidenavModule, AsyncPipe
   ],
   providers: [],
   bootstrap: [AppComponent],
