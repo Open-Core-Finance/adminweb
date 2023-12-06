@@ -16,11 +16,13 @@ import { UiOrderEvent } from '../classes/UiOrderEvent';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { OrganizationService } from '../services/organization.service';
+import { ConfirmDialogComponent, ConfirmDialogModel } from '../confirm-dialog/confirm-dialog.component';
+import { GeneralModel } from '../classes/CommonClasses';
 
 @Component({
     template: ''
 })
-export abstract class TableComponent<T> implements AfterViewInit {
+export abstract class TableComponent<T extends GeneralModel> implements AfterViewInit {
 
     public paging: Paging | null = null;
     public message: UserMessage = {success: [], error: []};
@@ -48,6 +50,7 @@ export abstract class TableComponent<T> implements AfterViewInit {
     private _languageSubscription: Subscription | null = null;
     private _organizationSubscription: Subscription | null = null;
     private _sortSubscription: Subscription | null = null;
+    private _deleteSubscription: Subscription | null = null;
 
     public constructor(protected restService: RestService, public auth: AuthenticationService,
                           protected http: HttpClient, protected router: Router, public languageService: LanguageService,
@@ -86,6 +89,7 @@ export abstract class TableComponent<T> implements AfterViewInit {
         this.unsubscribe(this._languageSubscription);
         this.unsubscribe(this._organizationSubscription);
         this.unsubscribe(this._sortSubscription);
+        this.unsubscribe(this._deleteSubscription);
     }
 
     reloadData() {
@@ -119,14 +123,14 @@ export abstract class TableComponent<T> implements AfterViewInit {
         this.isLoadingResults = false;
         this.paging = paging;
         if (this.paging) {
+            this.tableData = [];
             if (this.paging.result) {
-                this.tableData = this.paging.result;
                 var index = (this.paging.pageNumber * this.paging.pageSize) + 1
-                for (const item of this.paging.result) {
-                    item['index'] = index++;
+                for ( const item of this.paging.result) {
+                    const obj = Object.assign(this.createNewItem(), item);
+                    obj['index'] = index++;
+                    this.tableData.push(obj);
                 }
-            } else {
-                this.tableData = [];
             }
             this.pageEvent.pageIndex = this.paging.pageNumber;
             this.pageEvent.pageSize = this.paging.pageSize;
@@ -198,7 +202,28 @@ export abstract class TableComponent<T> implements AfterViewInit {
         this.reloadData();
     }
 
-    abstract showDeleteModel(item: any): any;
+    abstract getDeleteConfirmContent(item: T): string;
+    abstract getDeleteConfirmTitle(item: T): string;
+
+    showDeleteModel(item: T) {
+        const message = this.getDeleteConfirmContent(item);
+        const title = this.getDeleteConfirmTitle(item);
+        const dialogData = new ConfirmDialogModel(title, message);
+    
+        const dialogRef = this.dialog.open(ConfirmDialogComponent, { data: dialogData });
+    
+        this._deleteSubscription = dialogRef.afterClosed().subscribe(dialogResult => {
+          if (dialogResult) {
+            const requestHeaders = this.restService.initApplicationJsonRequestHeaders();
+            const serviceUrl = this.getDeleteUrl();
+            this.http.delete<GeneralApiResponse>(serviceUrl, {
+              headers: requestHeaders, params: { entityId: item.id }
+            }).subscribe({
+              next: (_: GeneralApiResponse) => this.reloadData(), error: (data: any) => this.showError(data)
+            });
+          }
+        });
+      }
 
     searchClick($event: any) {
         this.searchText = $event.searchText;

@@ -10,6 +10,7 @@ environment.apiUrl.userprofile = "http://userprofile.corefinance.tech";
 environment.apiUrl.authentication = environment.apiUrl.userprofile + "/authentication";
 environment.apiUrl.product = "http://product.corefinance.tech";
 environment.apiUrl.organization = environment.apiUrl.product + "/organizations";
+environment.apiUrl.currency = environment.apiUrl.product + "/currencies";
 
 // environment.apiUrl.user = environment.apiUrlRoot + "/user";
 // environment.apiUrl.subject = environment.apiUrlRoot + "/subject";

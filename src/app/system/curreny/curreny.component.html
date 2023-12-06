@@ -1,6 +1,6 @@
 <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
 
-<app-add-organization (cancel)="cancelAdd($event)" *ngIf="addMode" (save)="submitAdd($event)" [addingItem]="addingItem"></app-add-organization>
+<app-add-curreny (cancel)="cancelAdd($event)" *ngIf="addMode" (save)="submitAdd($event)" [addingItem]="addingItem"></app-add-curreny>
 
 <table mat-table [dataSource]="tableData" matSort matSortActive="id" matSortDisableClear matSortDirection="asc"
   *ngIf="!addMode">
@@ -13,40 +13,37 @@
   
     <!-- ID Column -->
     <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header class="id-col">{{languageService.formatLanguage("organization.id", [])}}</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="id-col">{{languageService.formatLanguage("currencyId", [])}}</th>
         <td mat-cell *matCellDef="let element" class="id-col"> {{element.id}} </td>
-    </ng-container>
-
-    <!-- Icon Column -->
-    <ng-container matColumnDef="iconUrl">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
-      <td mat-cell *matCellDef="let element">
-        <img src="{{element.iconUrl}}" alt=""/>
-      </td>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.formatLanguage("organization.name", [])}}</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.formatLanguage("currency", [])}}</th>
       <td mat-cell *matCellDef="let element"> {{element.name}} </td>
     </ng-container>
 
-    <!-- Country Column -->
-    <ng-container matColumnDef="country">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.formatLanguage("country", [])}}</th>
-      <td mat-cell *matCellDef="let element"> {{element.country}} </td>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="symbol">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.formatLanguage("currencySymbol", [])}}</th>
+      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
     </ng-container>
 
-    <!-- Phone Column -->
-    <ng-container matColumnDef="phoneNumber">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.formatLanguage("phoneNumber", [])}}</th>
-      <td mat-cell *matCellDef="let element"> {{element.phoneNumber}} </td>
+    <!-- decimalMark Column -->
+    <ng-container matColumnDef="decimalMark">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.formatLanguage("decimalMark", [])}}</th>
+        <td mat-cell *matCellDef="let element">
+           <span *ngIf="element.decimalMark == '.'">{{languageService.formatLanguage("decimalMarkPeriod", [])}}</span>
+           <span *ngIf="element.decimalMark == ','">{{languageService.formatLanguage("decimalMarkComma", [])}}</span>
+        </td>
     </ng-container>
 
-    <!-- Email Column -->
-    <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.formatLanguage("email", [])}}</th>
-      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    <!-- symbolAtBeginning Column -->
+    <ng-container matColumnDef="symbolAtBeginning">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.formatLanguage("currencySymbolPosision", [])}}</th>
+      <td mat-cell *matCellDef="let element">
+        {{languageService.formatLanguage("currencySymbolPosision_" + element.symbolAtBeginning, [])}}
+      </td>
     </ng-container>
 
     <!-- Action Column -->
@@ -57,7 +54,6 @@
         <mat-icon aria-hidden="false" fontIcon="refresh" (click)="reloadData()"></mat-icon>
       </th>
       <td mat-cell *matCellDef="let element">
-        <mat-icon aria-hidden="false" fontIcon="view_kanban" (click)="viewOrganizationClick(element)"></mat-icon>
         <mat-icon aria-hidden="false" fontIcon="edit" (click)="editClick($event, element)"></mat-icon>
         <mat-icon aria-hidden="false" fontIcon="delete" (click)="showDeleteModel(element)"></mat-icon>
       </td>
